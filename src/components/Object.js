@@ -37,6 +37,18 @@ class PropertyObject extends Component {
             var obj = pr[oldv];
             delete pr[oldv];
             pr[event.target.value] = obj;
+        } else if (event.target.name === "_required") {
+            var k = event.target.getAttribute('data-key');
+            if(event.target.checked) {
+                // add
+                property.required.push(k)
+            } else {
+                // remove
+                var i = property.required.indexOf(k)
+                if(i > -1) {
+                    property.required.splice(i, 1)
+                }
+            }
         } else {
             var k = event.target.getAttribute('data-key');
             pr[k][event.target.name] = event.target.value;
@@ -62,7 +74,7 @@ class PropertyObject extends Component {
             <div className="objectWrapper">
                 {sortable.map(function(el){
                     return(
-                        <Property name={el[0]} property={el[1]} onChange={this.onChange} onUpdate={this.onUpdate}/>
+                        <Property name={el[0]} property={el[1]} required={this.props.property.required.indexOf(el[0]) > -1} onChange={this.onChange} onUpdate={this.onUpdate}/>
                     )
                 }, this)}
                 <button onClick={() => this.onAdd("new_key", {type: "string"})}>New Property</button>

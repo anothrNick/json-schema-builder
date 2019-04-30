@@ -5,7 +5,8 @@ import Object from './components/Object';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
+            type: "object",
             properties: {
                 "name": {
                     _sort: 0, // for consistent display order
@@ -21,9 +22,11 @@ class App extends Component {
                             _sort: 0,
                             type: "string"
                         }
-                    }
+                    },
+                    required: []
                 }
-            }
+            },
+            required: []
          };
     }
 
@@ -41,7 +44,7 @@ class App extends Component {
             <div>
                 <Object onUpdate={this.onUpdate} property={this.state} />
                 <pre>
-                    {JSON.stringify(this.state.properties, undefined, 4)}
+                    {JSON.stringify(this.state, undefined, 4)}
                 </pre>
             </div>
         );
