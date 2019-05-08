@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Object from './components/Object';
-// import Builder from './components/Builder';
 
 class App extends Component {
     constructor(props) {
@@ -39,13 +38,33 @@ class App extends Component {
         });
     }
 
+    removeKey = (key, obj) => {
+        for(var k in obj) {
+            delete obj[k][key];
+            if(obj[k].type === "object") {
+                obj[k].properties = this.removeKey(key, obj[k].properties)
+            }
+        }
+        return obj
+    }
+
     render() {
+        let scrubbedObj = this.state
+        scrubbedObj.properties = this.removeKey("_sort", scrubbedObj.properties)
         return (
-            <div>
-                <Object onUpdate={this.onUpdate} property={this.state} />
-                <pre>
-                    {JSON.stringify(this.state, undefined, 4)}
-                </pre>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-7">
+                        <Object onUpdate={this.onUpdate} property={this.state} />
+                    </div>
+                    <div class="col-5">
+                        <pre>
+                            <code>
+                            {JSON.stringify(scrubbedObj, undefined, 4)}
+                            </code>
+                        </pre>
+                    </div>
+                </div>
             </div>
         );
     }
