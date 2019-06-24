@@ -49,7 +49,7 @@ class App extends Component {
     }
 
     render() {
-        let scrubbedObj = this.state
+        let scrubbedObj = JSON.parse(JSON.stringify(this.state))
         scrubbedObj.properties = this.removeKey("_sort", scrubbedObj.properties)
         return (
             <div class="container-fluid">

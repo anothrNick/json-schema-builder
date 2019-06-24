@@ -17,6 +17,14 @@ class PropertyObject extends Component {
         this.props.onUpdate(this.state.name, property);
     }
 
+    onDeleteKey = (key) => {
+        var property = this.props.property;
+        var pr = this.props.property.properties;
+        delete pr[key];
+        property.properties = pr;
+        this.props.onUpdate(this.state.name, property);
+    }
+
     onAdd = (key, obj) => {
         var property = this.props.property;
         var pr = this.props.property.properties;
@@ -59,9 +67,18 @@ class PropertyObject extends Component {
             }
         } else if (event.target.name === "_additionalProperties") {
             property.additionalProperties = event.target.checked
+        } else if (event.target.name === "enum") {
+            let k = event.target.getAttribute('data-key');
+            const value = event.target.value;
+            if (value === "") {
+                delete pr[k]["enum"];
+            } else {
+                pr[k]["enum"] = value.split(/\r?\n/);
+            }
         } else {
             let k = event.target.getAttribute('data-key');
-            pr[k][event.target.name] = event.target.value;
+            const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+            pr[k][event.target.name] = value;
 
             // cleanup object and array specific keys
             if(event.target.name === "type" && event.target.value !== "object") {
@@ -89,16 +106,16 @@ class PropertyObject extends Component {
 
         return (
             <div className="objectWrapper">
-                <div className="additionalProperties form-check mr-2">
+                {/* <div className="additionalProperties form-check mr-2">
                     <input id={"additionalProperties_"+this.props.name} className="form-check-input" name="_additionalProperties" checked={this.props.property.additionalProperties} onChange={this.onChange} type="checkbox"/>
                     <label for={"additionalProperties_"+this.props.name} class="form-check-label">Additional Properties</label>
-                </div>
+                </div> */}
                 {sortable.map(function(el){
                     return(
-                        <Property name={el[0]} property={el[1]} required={this.props.property.required.indexOf(el[0]) > -1} onChange={this.onChange} onUpdate={this.onUpdate}/>
+                        <Property name={el[0]} property={el[1]} required={this.props.property.required.indexOf(el[0]) > -1} onChange={this.onChange} onUpdate={this.onUpdate} onDeleteKey={this.onDeleteKey}/>
                     )
                 }, this)}
-                <button class="btn btn btn-outline-info mt-2" onClick={() => this.onAdd("new_key", {type: "string"})}>New Property</button>
+                <button class="btn btn btn-outline-info mt-1" onClick={() => this.onAdd("new_key", {type: "string"})}>Add Property to {this.props.name || "root"}</button>
             </div>
         );
     }
