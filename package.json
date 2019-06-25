@@ -1,6 +1,7 @@
 {
   "name": "json-schema-builder",
   "version": "0.1.0",
+  "homepage": "https://anothrnick.github.io/json-schema-builder/",
   "private": true,
   "dependencies": {
     "gh-pages": "^2.0.1",
