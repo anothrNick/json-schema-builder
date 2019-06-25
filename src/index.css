@@ -15,24 +15,75 @@ pre {
   border-radius: 4px;
 }
 
+.items-input {
+  text-align: right;
+  background-color: transparent !important;
+  border-color: transparent;
+}
+
 .property{
   display: flex;
-  padding: 3px;
+  padding: 3px 0px 3px 0px;
 }
 
 .property-wrapper {
-  border-left: 3px solid #D5D5D5;
-  margin: 10px 0px 10px 0px;
-  padding-left: 5px;
-  overflow: auto;
+
+}
+
+.property-wrapper:first-of-type {
+  border-left: none;
 }
 
 .objectWrapper {
-  margin: 10px;
-  /* border-left: 2px solid #D5D5D5; */
-  padding: 0px 0px 0px 15px;
+  padding: 15px;
+  margin: 5px 0px 5px 0px;
+  border-left: 2px solid #D5D5D5;
 }
 .objectWrapper:first-of-type{
   border: none;
-  padding: 15px;
+  margin: 0px;
+}
+
+
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 98vw;
+  position: absolute;
+  z-index: 100000;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 25px;
+}
+
+.x-modal .wrapper {
+  background-color: #FFF;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.x-modal .close-modal {
+  float: right;
+}
+
+.x-modal .content {
+  padding: 18px 15px 15px 15px;
+  width: 45vw;
+}
+
+.x-modal {
+  position: relative;
+  display: flex;
+}
+
+.backdrop-modal {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,.5);
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
 }
