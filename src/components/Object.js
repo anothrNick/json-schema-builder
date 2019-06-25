@@ -81,10 +81,24 @@ class PropertyObject extends Component {
             pr[k][event.target.name] = value;
 
             // cleanup object and array specific keys
-            if(event.target.name === "type" && event.target.value !== "object") {
-                delete pr[k]["properties"];
-                delete pr[k]["required"];
-                delete pr[k]["additionalProperties"];
+            if(event.target.name === "type") {
+                if(event.target.value !== "object") {
+                    delete pr[k]["properties"];
+                    delete pr[k]["required"];
+                    delete pr[k]["additionalProperties"];
+                }
+                
+                if(event.target.value !== "array") {
+                    delete pr[k]["items"];
+                }
+                
+                if(event.target.value === "object") {
+                    pr[k]["properties"] = {};
+                    pr[k]["required"] = [];
+                    pr[k]["additionalProperties"] = false;
+                } else if(event.target.value === "array") {
+                    pr[k]["items"] = {"type": "string"};
+                }
             }
         }
 
@@ -106,16 +120,12 @@ class PropertyObject extends Component {
 
         return (
             <div className="objectWrapper">
-                {/* <div className="additionalProperties form-check mr-2">
-                    <input id={"additionalProperties_"+this.props.name} className="form-check-input" name="_additionalProperties" checked={this.props.property.additionalProperties} onChange={this.onChange} type="checkbox"/>
-                    <label for={"additionalProperties_"+this.props.name} class="form-check-label">Additional Properties</label>
-                </div> */}
-                {sortable.map(function(el){
+                {sortable.map(function(el, i){
                     return(
-                        <Property name={el[0]} property={el[1]} required={this.props.property.required.indexOf(el[0]) > -1} onChange={this.onChange} onUpdate={this.onUpdate} onDeleteKey={this.onDeleteKey}/>
+                        <Property key={this.props.name + "_" + i} name={el[0]} property={el[1]} required={this.props.property.required.indexOf(el[0]) > -1} onChange={this.onChange} onUpdate={this.onUpdate} onDeleteKey={this.onDeleteKey}/>
                     )
                 }, this)}
-                <button class="btn btn btn-outline-info mt-1" onClick={() => this.onAdd("new_key", {type: "string"})}>Add Property to {this.props.name || "root"}</button>
+                <button className="btn btn btn-outline-info mt-1" onClick={() => this.onAdd("new_key", {type: "string"})}>Add Property to <u>{this.props.name || "root"}</u></button>
             </div>
         );
     }

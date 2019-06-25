@@ -15,6 +15,12 @@ pre {
   border-radius: 4px;
 }
 
+.items-input {
+  text-align: right;
+  background-color: transparent !important;
+  border-color: transparent;
+}
+
 .property{
   display: flex;
   padding: 3px 0px 3px 0px;

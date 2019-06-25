@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Boolean from './BooleanProperty';
 import Object from './ObjectProperty';
 import String from './StringProperty';
-import Array from './ArrayProperty';
+import Number from './NumberProperty';
 
 class PropertySettings extends Component {
     render() {
@@ -23,13 +23,14 @@ class PropertySettings extends Component {
                 <h4>{this.props.name}</h4>
                 <hr/>
                 <form className="form">
+                    {!this.props.arrayItems && 
                     <div className="name form-group">
                         <label for="_key">Property Name</label>
                         <input className="form-control" name="_key" data-value={this.props.name} value={this.props.name} onChange={onChange}/>
-                    </div>
+                    </div>}
                     <div className="type form-group">
                         <label for="type">Type</label>
-                        <select className="form-control" value={this.props.property.type} data-key={this.props.name} name="type" onChange={onChange}>
+                        <select className="form-control" id="type" value={this.props.property.type} data-key={this.props.name} name="type" onChange={onChange}>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
                             <option value="number">number</option>
@@ -48,17 +49,19 @@ class PropertySettings extends Component {
                             value={this.props.property.description} 
                             onChange={onChange}/>
                     </div>
+                    {!this.props.arrayItems && 
                     <div className="required form-check form-group">
                         <input id={"required_"+this.props.name} className="form-check-input" name="_required" data-key={this.props.name} checked={this.props.required} onChange={onChange} type="checkbox"/>
                         <label for={"required_"+this.props.name} className="form-check-label">Required</label>
                         <small className="form-text text-muted">
                             Specify if this field's value is required when saving data.
                         </small>
-                    </div>
+                    </div>}
                     {this.props.property.type === "boolean" && <Boolean property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
                     {this.props.property.type === "object" && <Object property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
                     {this.props.property.type === "string" && <String property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
-                    {this.props.property.type === "array" && <Array property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
+                    {this.props.property.type === "integer" && <Number property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
+                    {this.props.property.type === "number" && <Number property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
                 </form>
             </>
         );
