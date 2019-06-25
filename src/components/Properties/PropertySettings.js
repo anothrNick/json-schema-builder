@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Boolean from './BooleanProperty';
-import Object from './ObjectProperty';
+import ObjectProperty from './ObjectProperty';
 import String from './StringProperty';
 import Number from './NumberProperty';
 
@@ -58,7 +58,7 @@ class PropertySettings extends Component {
                         </small>
                     </div>}
                     {this.props.property.type === "boolean" && <Boolean property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
-                    {this.props.property.type === "object" && <Object property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
+                    {this.props.property.type === "object" && <ObjectProperty property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
                     {this.props.property.type === "string" && <String property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
                     {this.props.property.type === "integer" && <Number property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}
                     {this.props.property.type === "number" && <Number property={this.props.property} name={this.props.name} onChange={this.props.onChange}/>}

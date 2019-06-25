@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Property from './Property';
 
-class PropertyObject extends Component {
+class ObjectComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -131,4 +131,4 @@ class PropertyObject extends Component {
     }
 }
 
-export default PropertyObject;
+export default ObjectComponent;

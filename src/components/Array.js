@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Object from './Object';
+import ObjectComponent from './Object';
 import Modal from './Modal';
 import PropertySettings from './Properties/PropertySettings';
 
-class Array extends Component {
+class ArrayComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -113,14 +113,14 @@ class Array extends Component {
                 </div>
 
                 {this.props.property.items.type === "array" && 
-                    <Array name={this.props.name + " items"} property={this.props.property.items} onUpdate={this.onUpdate}/>
+                    <ArrayComponent name={this.props.name + " items"} property={this.props.property.items} onUpdate={this.onUpdate}/>
                 }
                 {this.props.property.items.type === "object" && 
-                    <Object name={this.props.name + " items"} property={this.props.property.items} onUpdate={this.onUpdate}/>
+                    <ObjectComponent name={this.props.name + " items"} property={this.props.property.items} onUpdate={this.onUpdate}/>
                 }
             </>
         );
     }
 }
 
-export default Array;
+export default ArrayComponent;

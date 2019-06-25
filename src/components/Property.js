@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Object from './Object';
-import Array from './Array';
+import ObjectComponent from './Object';
+import ArrayComponent from './Array';
 import Modal from './Modal';
 import PropertySettings from './Properties/PropertySettings';
 
@@ -81,11 +81,11 @@ class Property extends Component {
                         </div>
                     </div>
                     {this.props.property.type === "array" && 
-                        <Array name={this.props.name} property={this.props.property} required={this.props.required} onUpdate={this.props.onUpdate}/>
+                        <ArrayComponent name={this.props.name} property={this.props.property} required={this.props.required} onUpdate={this.props.onUpdate}/>
                         
                     }
                     {this.props.property.type === "object" && 
-                        <Object name={this.props.name} property={this.props.property} onUpdate={this.props.onUpdate}/>
+                        <ObjectComponent name={this.props.name} property={this.props.property} onUpdate={this.props.onUpdate}/>
                     }
                 </div>
             </>

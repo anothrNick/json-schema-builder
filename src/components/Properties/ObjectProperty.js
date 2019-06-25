@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Object extends Component {
+class ObjectProperty extends Component {
     render() {
         return (
             <>
@@ -16,4 +16,4 @@ class Object extends Component {
     }
 }
 
-export default Object;
+export default ObjectProperty;
