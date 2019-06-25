@@ -30,9 +30,6 @@ class App extends Component {
     }
 
     onUpdate = (key, obj) => {
-        console.log("UPDATE");
-        console.log(key);
-        console.log(obj);
         this.setState({
             properties: obj.properties
         });
