@@ -10,22 +10,25 @@ class ObjectComponent extends Component {
     }
 
     onUpdate = (key, obj) => {
+        var name = this.props.name || "root";
         var property = this.props.property;
         var pr = this.props.property.properties;
         pr[key] = obj;
         property.properties = pr;
-        this.props.onUpdate(this.state.name, property);
+        this.props.onUpdate(name, property);
     }
 
     onDeleteKey = (key) => {
+        var name = this.props.name || "root";
         var property = this.props.property;
         var pr = this.props.property.properties;
         delete pr[key];
         property.properties = pr;
-        this.props.onUpdate(this.state.name, property);
+        this.props.onUpdate(name, property);
     }
 
     onAdd = (key, obj) => {
+        var name = this.props.name || "root";
         var property = this.props.property;
         var pr = this.props.property.properties;
         var count = 0;
@@ -33,10 +36,11 @@ class ObjectComponent extends Component {
         obj["_sort"] = count;
         pr[key] = obj;
         property.properties = pr;
-        this.props.onUpdate(this.state.name, property);
+        this.props.onUpdate(name, property);
     }
 
     onChange = (event) => {
+        var name = this.props.name || "root";
         var property = this.props.property;
         var pr = this.props.property.properties;
 
@@ -103,7 +107,7 @@ class ObjectComponent extends Component {
         }
 
         property.properties = pr;
-        this.props.onUpdate(this.state.name, property);
+        this.props.onUpdate(name, property);
     }
 
     render() {
