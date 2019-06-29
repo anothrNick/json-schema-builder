@@ -56,6 +56,7 @@ class Property extends Component {
                 </Modal>
 
                 <div className="property-wrapper">
+                    <span className="dot"></span>
                     <div className="property form-inline">
                         <div className="name form-group mr-2">
                             <input className="form-control" name="_key" data-value={this.props.name} value={this.props.name} onChange={onChange}/>

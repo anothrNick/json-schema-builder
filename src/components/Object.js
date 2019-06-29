@@ -5,7 +5,8 @@ class ObjectComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: this.props.name || "root"
+            name: this.props.name || "root",
+            rootClass: this.props.name || "__root_object"
         };
     }
 
@@ -123,13 +124,14 @@ class ObjectComponent extends Component {
         });
 
         return (
-            <div className="objectWrapper">
+            <div className={"objectWrapper " + this.state.rootClass}>
                 {sortable.map(function(el, i){
                     return(
                         <Property key={this.props.name + "_" + i} name={el[0]} property={el[1]} required={this.props.property.required.indexOf(el[0]) > -1} onChange={this.onChange} onUpdate={this.onUpdate} onDeleteKey={this.onDeleteKey}/>
                     )
                 }, this)}
                 <button className="btn btn btn-outline-info mt-1" onClick={() => this.onAdd("new_key", {type: "string"})}>Add Property to <u>{this.props.name || "root"}</u></button>
+                <br/><br/>
             </div>
         );
     }

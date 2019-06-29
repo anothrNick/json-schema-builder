@@ -27,21 +27,68 @@ pre {
 }
 
 .property-wrapper {
+  padding-left: 15px;
+  position: relative;
+}
+.property-wrapper:before {
+  height: 100%;
+  width: 4px;
+  border-left: 2px solid #CCC;
+  position: absolute;
+  left: 4px;
+  bottom: 0;
+  content: '';
+}
+.property-wrapper:after {
+  height: 4px;
+  width: 34px;
+  border-top: 2px solid #CCC;
+  position: absolute;
+  left: -34px;
+  top: 22px;
+  content: '';
+}
 
+.objectWrapper.__root_object>.property-wrapper:after{
+  display: none;
+}
+
+.property-wrapper .dot {
+  height: 10px;
+  width: 10px;
+  background-color: #FFF;
+  border-radius: 100%;
+  border: 2px solid #CCC;
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 18px;
 }
 
 .property-wrapper:first-of-type {
   border-left: none;
 }
+.property-wrapper:first-of-type:before {
+  height: 20px;
+}
+/* .property-wrapper:last-of-type:before {
+  height: 20px;
+  top: 0;
+} */
+.property-wrapper:only-of-type:before {
+  height: 0px;
+  top: 0;
+}
 
 .objectWrapper {
-  padding: 15px;
-  margin: 5px 0px 5px 0px;
-  border-left: 2px solid #D5D5D5;
+  padding-left: 25px;
+  /* 
+  border-left: 2px solid #D5D5D5; */
 }
 .objectWrapper:first-of-type{
   border: none;
   margin: 0px;
+  padding: 5px;
 }
 
 
